@@ -42,7 +42,7 @@ app.get('/api/restaurants/:id/reviews', (req, res) => {
   db.getReviewsByRestaurant(req.params.id, (err, reviews) => {
     if (err) {
       console.log('error calling db.getReviewsByRestaurant')
-      res.status(501).send(err);
+      res.status(401).send(err);
     } else {
       res.status(200).send(reviews);
     }
@@ -55,7 +55,7 @@ app.post('/api/restaurants/:id/newreview', (req, res) => {
   db.insertReview(review, (err) => {
     if (err) {
       console.log('error calling db.getReviewsByRestaurant')
-      res.status(501).send(err);
+      res.status(401).send(err);
     } else {
       console.log('insert review successfully!')
       res.status(200).end();
