@@ -28,4 +28,4 @@ CREATE TABLE users (
   friends INT NOT NULL,
   photos INT NOT NULL,
   PRIMARY KEY (username)
-)
+);

@@ -2,10 +2,10 @@
 const faker = require('faker');
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    let data = [];
-    let entries = 0;
     let func;
     for (let i = 0; i < 5; i++) {
+      let data = [];
+      let entries = 0;
       console.log(i);
       while(entries < 500000) {
         let date = new Date();
