@@ -61,7 +61,7 @@ const ReviewEntry = (props) => {
         <span>
           <img src={rating}/>
         </span>
-        <Date>  {postDate}</Date>
+        <Date>{postDate}</Date>
         <Comment className="comment">{props.review.comment}</Comment>
         <Buttons />
       </ReviewDiv>

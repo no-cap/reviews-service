@@ -4,7 +4,8 @@ const businesses = require('./businessesGenerator.js');
 const users = require('./usersGenerator.js');
 const client = new cassandra.Client({
   contactPoints: ['localhost'],
-  localDataCenter: 'datacenter1'
+  localDataCenter: 'datacenter1',
+  keyspace: 'nocap'
 });
 
 client.connect();
@@ -22,7 +23,7 @@ async function seed() {
 
   const promises = new Array(concurrency);
   const info = {
-    total: 50000000,
+    total: 25000000,
     counter: 0
   };
 
@@ -40,23 +41,30 @@ async function seed() {
 }
 
 async function queryFunc(info) {
-  const restaurantQuery = 'INSERT INTO nocap.reviewsByRestaurant (reviewId, date, businessName, rating, comment, username, useful, funny, cool, firstName, lastName, cityState, avatar, friends, photos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-  const userQuery = 'INSERT INTO nocap.reviewsByUser (reviewId, date, businessName, rating, comment, username, useful, funny, cool, firstName, lastName, cityState, avatar, friends, photos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+  const restaurantQuery = 'INSERT INTO nocap.reviewsByBusiness (reviewId, date, businessId, businessName, rating, comment, userId, username, useful, funny, cool, firstName, lastName, cityState, avatar, friends, photos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+  const userQuery = 'INSERT INTO nocap.reviewsByUser (reviewId, date, businessId, businessName, rating, comment, userId, username, useful, funny, cool, firstName, lastName, cityState, avatar, friends, photos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
   const options = { prepare: true, isIdempotent: true };
 
-  while (info.counter++ < info.total) {
+  while (info.counter < info.total) {
+    info.counter++;
     if (info.counter % 100000 === 0) {
       console.log(info.counter);
     }
 
     const user = usernamesArr[Math.floor(Math.random() * 2500000)];
-    const { username, firstName, lastName, cityState, avatar, friends, photos } = user;
+    const business = businessesArr[Math.floor(Math.random() * 10000000)];
+
+    const { userId, username, firstName, lastName, cityState, avatar, friends, photos } = user;
+    const { businessId, businessName } = business;
+
     const params = [
       info.counter,
       faker.date.between('2016-01-01', '2020-04-07').toLocaleDateString(),
-      businessesArr[Math.floor(Math.random() * 10000000)],
+      businessId,
+      businessName,
       faker.random.number({ min: 1, max: 5 }),
       faker.lorem.paragraph(2),
+      userId,
       username,
       false,
       false,
@@ -77,3 +85,6 @@ async function queryFunc(info) {
 seed();
 
 process.on('unhandledException', (reason) => { throw reason; });
+// client.on('log', (level, loggerName, message, furtherInfo) => {
+//   console.log(`${level} - ${loggerName}:  ${message}`);
+// });

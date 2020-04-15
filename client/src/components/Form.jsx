@@ -88,7 +88,7 @@ class Form extends React.Component {
       date: date.toLocaleDateString(),
       usercity: faker.fake('{{address.city}}, {{address.state}}'),
       avatar: faker.image.avatar(),
-      restaurant_id: this.props.restaurant
+      restaurant_id: this.props.business
     }
     this.props.handleNewReview(review);
     this.props.togglePop();

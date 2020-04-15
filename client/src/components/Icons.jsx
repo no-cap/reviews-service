@@ -1,27 +1,20 @@
 import React from "react";
 import styled from 'styled-components';
 
-class Icons extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      friends: Math.floor(Math.random() * 100) + 1,
-      reviews: Math.floor(Math.random() * 1000) + 1,
-      photos: Math.floor(Math.random() * 5000) + 1
-    }
-  }
+const Icons = (props) => {
 
-  render() {
-    return (
-      <div>
-        <FriendsIcon friends={this.state.friends}/>
-        <ReviewsIcon reviews={this.state.reviews}/>
-        <PhotosIcon photos={this.state.photos}/>
-      </div>
-    )
-  }
+  const { friends, photos } = props.review;
+  const reviews = Math.floor(Math.random() * 500)
+
+  return (
+    <div>
+      <FriendsIcon friends={friends} />
+      <ReviewsIcon reviews={reviews} />
+      <PhotosIcon photos={photos} />
+    </div>
+  )
 }
- 
+
 const IconDiv = styled.div`
   fill: #f15c00;
   text-align:left;
@@ -29,7 +22,7 @@ const IconDiv = styled.div`
   margin-left: 6px;
   line-height: 80%;
 `;
-  
+
 
 const TextSpan = styled.span`
   color: #333;
@@ -64,7 +57,7 @@ const ReviewsIcon = (props) => (
     <TextSpan><b>{props.reviews}</b> reviews</TextSpan>
   </IconDiv>
 )
-  
+
 
 
 const PhotosIcon = (props) => (

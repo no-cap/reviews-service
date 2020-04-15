@@ -2,11 +2,12 @@ const faker = require('faker');
 
 let users = [];
 let usernames = () => {
-  let counter = 0;
+  let counter = 1;
   for (let i = 0; i < 5; i++) {
     for (let i = 0; i < 500000; i++) {
       let firstName = faker.name.firstName();
       let userObj = {};
+      userObj.userId = counter;
       userObj.username = firstName + Math.floor(Math.random() * 4000);
       userObj.firstName = firstName;
       userObj.lastName = faker.name.lastName();
@@ -17,7 +18,7 @@ let usernames = () => {
       users.push(userObj);
       counter++;
     }
-    console.log('users: ', counter);
+    console.log('users: ', counter - 1);
     console.log(users[users.length - 1]);
   }
   console.log('Finished creating users array')

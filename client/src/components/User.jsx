@@ -44,7 +44,7 @@ const User = (props) => {
       <div>
         <Username className="username">{props.review.username}</Username>
         <Usercity className="usercity">{props.review.usercity}</Usercity>
-        <Icons />
+        <Icons review={props.review} />
       </div>
     </UserContainer>
   )

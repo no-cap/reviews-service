@@ -1,21 +1,31 @@
-const mysql = require('mysql');
+const cassandra = require('cassandra-driver');
+const faker = require('faker');
 
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'secret',
-  database: 'wonder4'
+const client = new cassandra.Client({
+  contactPoints: ['localhost'],
+  localDataCenter: 'datacenter1',
+  keyspace: 'nocap'
 });
 
+client.connect();
 
+const getAllReviewsByBusiness = id => {
+  return new Promise((resolve, reject) => {
+    const param = [id];
+    const query = 'select * from reviewsbybusiness where businessid = ?;'
+    const options = {
+      prepare: true,
+    }
 
-connection.connect((err) => {
-  if (err) {
-    console.log('error connecting mysql')
-  } else {
-    console.log('successfully connect to mysql')
-  }
-})
+    client.execute(query, param, options)
+    .then(response => {
+      resolve(response);
+    })
+    .catch(error => {
+      reject(error);
+    })
+  });
+}
 
-module.exports =  connection;
+module.exports = { getAllReviewsByBusiness };

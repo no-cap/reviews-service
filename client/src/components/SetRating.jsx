@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import style from '../styles.css.jsx';
 
 
-const Restaurant = styled.span`
+const Business = styled.span`
   border-top: 1px solid #e6e6e6;
   font-size: 14px;
   line-height: 1.28571em;
@@ -54,7 +54,7 @@ class SetRating extends React.Component {
       rating: 0,
       hoverRating: 0,
       showForm: false,
-      restaurantName: ''
+      businessName: ''
     };
   }
 
@@ -72,14 +72,14 @@ class SetRating extends React.Component {
 
   componentDidMount() {
     // this.getReviews();
-    this.getRestaurant(this.props.restaurant);
+    this.getBusiness(this.props.business);
   }
 
-  getRestaurant(id) {
+  getBusiness(id) {
     $.ajax({
       method: 'GET',
       url: `/api/restaurant/${id}`,
-      success: (content) => {this.setState({restaurantName: content})},
+      success: (content) => {this.setState({businessName: content})},
       error: (err) => (console.log('error from get request: ', err))
     })
   }
@@ -128,10 +128,10 @@ class SetRating extends React.Component {
           <StarList className="rating">
             {stars}
           </StarList>
-          <Restaurant className="restaurant">Start your review of <strong>{this.state.restaurantName}</strong></Restaurant>
+          <Business className="business">Start your review of <strong>{this.state.businessName}</strong></Business>
         </Inputbox>
         {this.state.showForm ? 
-          <Form restaurant={this.props.restaurant} rating={this.state.rating} togglePop={this.togglePop.bind(this)} handleNewReview={this.props.postReview}/> 
+          <Form business={this.props.business} rating={this.state.rating} togglePop={this.togglePop.bind(this)} handleNewReview={this.props.postReview}/> 
           : <div></div>}
       </InputSection>
     )
