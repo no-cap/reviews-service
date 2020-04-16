@@ -7,7 +7,7 @@ USE nocap;
 
 CREATE TABLE reviewsByBusiness (
   reviewId INT,
-  date DATE,
+  date TEXT,
   businessId INT,
   businessName TEXT,
   rating INT,
@@ -28,7 +28,7 @@ CREATE TABLE reviewsByBusiness (
 
 CREATE TABLE reviewsByUser (
   reviewId INT,
-  date DATE,
+  date TEXT,
   businessId INT,
   businessName TEXT,
   rating INT,
