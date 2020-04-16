@@ -41,7 +41,7 @@ const ReviewDiv = styled.div`
 const ReviewEntry = (props) => {
 
   let dateStrings = props.review.date.slice(0,10).split('-');
-  let postDate = `${dateStrings[1]}/${dateStrings[2]}/${dateStrings[0]}`;
+  let postDate = `${dateStrings[0]}`;
 
   let rating = stars1;
   if (props.review.rating === 5 ) {
