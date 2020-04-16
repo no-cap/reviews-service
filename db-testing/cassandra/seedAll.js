@@ -3,7 +3,7 @@ const faker = require('faker');
 const businesses = require('./businessesGenerator.js');
 const users = require('./usersGenerator.js');
 const client = new cassandra.Client({
-  contactPoints: ['localhost'],
+  contactPoints: ['13.56.59.60'],
   localDataCenter: 'datacenter1',
   keyspace: 'nocap'
 });
@@ -19,7 +19,7 @@ async function seed() {
     if (err) throw err;
   });
 
-  const concurrency = 100;
+  const concurrency = 50;
 
   const promises = new Array(concurrency);
   const info = {
