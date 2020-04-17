@@ -24,7 +24,7 @@ app.get(`/api/reviews`, (req, res) => {
   })
 });
 
-app.get('http://3.101.42.194:3003/loaderio-c01ff4b7ab7aea1255175cda36ef807c/', (req, res) => {
+app.get('loaderio-c01ff4b7ab7aea1255175cda36ef807c', (req, res) => {
   res.status(200).json('hi');
 })
 
