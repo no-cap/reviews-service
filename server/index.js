@@ -23,9 +23,9 @@ app.get(`/api/reviews`, (req, res) => {
   })
 });
 
-app.get('loaderio-c01ff4b7ab7aea1255175cda36ef807c', (req, res) => {
-  const temp = '';
-  temp.status(200).json('loaderio-c01ff4b7ab7aea1255175cda36ef807c');
+app.get('/loaderio-c01ff4b7ab7aea1255175cda36ef807c/', (req, res) => {
+  let response = 'loaderio-c01ff4b7ab7aea1255175cda36ef807c';
+  return res.status(200).send(response);
 })
 
 app.listen(port, () => console.log(`listening on port ${port}!`));
