@@ -40,8 +40,7 @@ const ReviewDiv = styled.div`
 
 const ReviewEntry = (props) => {
 
-  let dateStrings = props.review.date.slice(0,10).split('-');
-  let postDate = `${dateStrings[0]}`;
+  let dateStrings = props.review.date;
 
   let rating = stars1;
   if (props.review.rating === 5 ) {
@@ -61,7 +60,7 @@ const ReviewEntry = (props) => {
         <span>
           <img src={rating}/>
         </span>
-        <Date>{postDate}</Date>
+        <Date>{dateStrings}</Date>
         <Comment className="comment">{props.review.comment}</Comment>
         <Buttons />
       </ReviewDiv>
