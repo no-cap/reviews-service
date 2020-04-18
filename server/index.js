@@ -23,8 +23,8 @@ app.get(`/api/reviews`, (req, res) => {
   })
 });
 
-app.get('/loaderio-c01ff4b7ab7aea1255175cda36ef807c/', (req, res) => {
-  let response = 'loaderio-c01ff4b7ab7aea1255175cda36ef807c';
+app.get('/loaderio-79ad28807634e588cf85e4848ab5bfb2/', (req, res) => {
+  let response = 'loaderio-79ad28807634e588cf85e4848ab5bfb2';
   return res.status(200).send(response);
 })
 
