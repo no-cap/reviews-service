@@ -3,7 +3,7 @@ const faker = require('faker');
 
 
 const client = new cassandra.Client({
-  contactPoints: ['54.176.81.102'],
+  contactPoints: ['172.31.30.164'],
   localDataCenter: 'datacenter1',
   keyspace: 'nocap'
 });
