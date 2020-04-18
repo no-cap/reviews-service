@@ -1,7 +1,7 @@
 DROP KEYSPACE IF EXISTS nocap;
 
 CREATE KEYSPACE nocap
-  WITH REPLICATION = {'class':'SimpleStrategy', 'replication_factor': 1};
+  WITH REPLICATION = {'class':'SimpleStrategy', 'replication_factor': 3};
 
 USE nocap;
 
