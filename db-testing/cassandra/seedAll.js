@@ -3,8 +3,8 @@ const faker = require('faker');
 const businesses = require('./businessesGenerator.js');
 const users = require('./usersGenerator.js');
 const client = new cassandra.Client({
-  contactPoints: ['54.176.81.102'],
-  localDataCenter: 'datacenter1',
+  contactPoints: ['54.67.119.163', '13.56.182.173', '54.153.36.197'],
+  localDataCenter: 'us-west',
   keyspace: 'nocap'
 });
 
