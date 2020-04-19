@@ -3,8 +3,7 @@ const faker = require('faker');
 
 
 const client = new cassandra.Client({
-  // ! change back to internal ips
-  contactPoints: ['172.31.16.18, 172.31.19.12, 172.31.24.168'],
+  contactPoints: ['172.31.16.18', '172.31.19.12', '172.31.24.168'],
   localDataCenter: 'us-west',
   keyspace: 'nocap'
 });
